@@ -9,7 +9,7 @@ import itertools
 
 # Генерация всех возможных слов
 combinations = itertools.product('ВИШНЯ', repeat=6)
-print(len(list(combinations)))
+# print(len(list(combinations)))
 count = 0
 for c in combinations:
     line = ''.join(c)
