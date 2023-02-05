@@ -19,9 +19,11 @@ def F(s):
     return True
 
 
+s = set()
 for i in combinations:
     line = ''.join(i)
     if line.count('Р') == 1 and line.count('О') == 2 and line.count('С') == 1 and line.count('М') == 1 \
             and line.count('А') == 2 and line.count('Х') == 1 and F(line):
         count += 1
-print(count)
+        s.add(line)
+print(count, len(s))
