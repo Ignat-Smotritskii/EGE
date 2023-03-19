@@ -1,29 +1,16 @@
 import itertools
 
-combinations = itertools.product('РОСМАХ', repeat=8)
-uls2 = ['AAРС', 'AAРМ', 'AAРХ', 'AAСР', 'AAСМ', 'AAСХ', 'AAМР', 'AAМС', 'AAМХ', 'AAХР', 'AAХС', 'AAХМ',
-        'ООРС', 'ООРМ', 'ООРХ', 'ООСР', 'ООСМ', 'ООСХ', 'ООМР', 'ООМС', 'ООМХ', 'ООХР', 'ООХС', 'ООХМ',
-        'AОРС', 'AОРМ', 'AОРХ', 'AОСР', 'AОСМ', 'AОСХ', 'AОМР', 'AОМС', 'AОМХ', 'AОХР', 'AОХС', 'AОХМ',
-        'ОAРС', 'ОAРМ', 'ОAРХ', 'ОAСР', 'ОAСМ', 'ОAСХ', 'ОAМР', 'ОAМС', 'ОAМХ', 'ОAХР', 'ОAХС', 'ОAХМ',
-        'РСAA', 'РМAA', 'РХAA', 'СРAA', 'СМAA', 'СХAA', 'МРAA', 'МСAA', 'МХAA', 'ХРAA', 'ХСAA', 'ХМAA',
-        'РСОО', 'РМОО', 'РХОО', 'СРОО', 'СМОО', 'СХОО', 'МРОО', 'МСОО', 'МХОО', 'ХРОО', 'ХСОО', 'ХМОО',
-        'РСОA', 'РМОA', 'РХОA', 'СРОA', 'СМОA', 'СХОA', 'МРОA', 'МСОA', 'МХОA', 'ХРОA', 'ХСОA', 'ХМОA',
-        'РСAО', 'РМAО', 'РХAО', 'СРAО', 'СМAО', 'СХAО', 'МРAО', 'МСAО', 'МХAО', 'ХРAО', 'ХСAО', 'ХМAО']
+words = itertools.permutations('РОСОМАХА')
+odd = 'РСМХ'
+even = 'ОА'
 count = 0
 
-
-def F(s):
-    for q in uls2:
-        if q in line:
-            return False
-    return True
-
-
-s = set()
-for i in combinations:
-    line = ''.join(i)
-    if line.count('Р') == 1 and line.count('О') == 2 and line.count('С') == 1 and line.count('М') == 1 \
-            and line.count('А') == 2 and line.count('Х') == 1 and F(line):
+for c in words:
+    line = ''.join(c)
+    flag = True
+    for i in range(7):
+        if (line[i] in odd and line[i+1] in odd) or (line[i] in even and line[i+1] in even):
+            flag = False
+    if flag:
         count += 1
-        s.add(line)
-print(count, len(s))
+print(count/4)
